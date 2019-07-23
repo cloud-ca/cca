@@ -21,16 +21,17 @@ import (
 
 	"github.com/cloud-ca/cca/cmd/cca/completion/bash"
 	"github.com/cloud-ca/cca/cmd/cca/completion/zsh"
+	"github.com/cloud-ca/cca/pkg/cmdutil"
 	"github.com/lithammer/dedent"
 	"github.com/spf13/cobra"
 )
 
-// NewCommand returns a new cobra.Command for cluster creation
-func NewCommand() *cobra.Command {
+// NewCommand returns a new cobra.Command for shell completion
+func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Args:  cobra.NoArgs,
 		Use:   "completion",
-		Short: "Output shell completion code for the specified shell (bash or zsh)",
+		Short: "Output completion code for the specified shell (bash or zsh)",
 		Long: strings.TrimLeft(dedent.Dedent(fmt.Sprint(`
             Outputs cca shell completion for the given shell (bash or zsh)
             This depends on the bash-completion binary.  Example installation instructions:
@@ -48,8 +49,8 @@ func NewCommand() *cobra.Command {
         `)), "\n"),
 	}
 
-	cmd.AddCommand(zsh.NewCommand())
-	cmd.AddCommand(bash.NewCommand())
+	cmd.AddCommand(zsh.NewCommand(gf))
+	cmd.AddCommand(bash.NewCommand(gf))
 
 	return cmd
 }
