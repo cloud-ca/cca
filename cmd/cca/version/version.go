@@ -21,6 +21,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/cloud-ca/cca/pkg/cmdutil"
 	"github.com/spf13/cobra"
 )
 
@@ -35,17 +36,18 @@ var (
 )
 
 // NewCommand returns a new cobra.Command for version
-func NewCommand() *cobra.Command {
+func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Args:  cobra.NoArgs,
 		Use:   "version",
-		Short: "prints the cca CLI version",
-		Long:  "prints the cca CLI version",
+		Short: "Print the cca CLI version",
+		Long:  "Print the cca CLI version",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Println(fmt.Sprintf("cca version %s", Version()))
 			return nil
 		},
 	}
+
 	return cmd
 }
 

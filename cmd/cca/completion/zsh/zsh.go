@@ -18,11 +18,12 @@ package zsh
 import (
 	"os"
 
+	"github.com/cloud-ca/cca/pkg/cmdutil"
 	"github.com/spf13/cobra"
 )
 
-// NewCommand returns a new cobra.Command for cluster creation
-func NewCommand() *cobra.Command {
+// NewCommand returns a new cobra.Command for zsh completion
+func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Args:  cobra.NoArgs,
 		Use:   "zsh",
