@@ -40,8 +40,8 @@ func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Args:  cobra.NoArgs,
 		Use:   "version",
-		Short: "print the cca CLI version",
-		Long:  "print the cca CLI version",
+		Short: "Print the cca CLI version",
+		Long:  "Print the cca CLI version",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Println(fmt.Sprintf("cca version %s", Version()))
 			return nil
