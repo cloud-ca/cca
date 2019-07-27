@@ -19,7 +19,6 @@ import (
 	"os"
 
 	"github.com/cloud-ca/cca/cmd/cca/completion"
-	"github.com/cloud-ca/cca/cmd/cca/environment"
 	"github.com/cloud-ca/cca/cmd/cca/version"
 	"github.com/cloud-ca/cca/pkg/cmdutil"
 	"github.com/cloud-ca/cca/pkg/output"
@@ -54,7 +53,6 @@ func NewCommand() *cobra.Command {
 	cmd.PersistentFlags().StringVar(&flags.LogLevel, "loglevel", cmdutil.DefaultLogLevel.String(), "log level "+logutil.LevelsString())
 
 	cmd.AddCommand(completion.NewCommand(flags))
-	cmd.AddCommand(environment.NewCommand(flags))
 	cmd.AddCommand(version.NewCommand(flags))
 
 	return cmd
