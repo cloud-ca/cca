@@ -30,7 +30,7 @@ jobs:
         key: repo-{{ .Environment.CIRCLE_SHA1 }}
     - run:
         name: Check formatting of all go files
-        command: make checkfmt
+        command: make goimports checkfmt
 
   lint:
     <<: *defaults
