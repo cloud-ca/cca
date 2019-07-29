@@ -165,7 +165,8 @@ changelog: ## Generate Changelog
 .PHONY: goimports
 goimports: ## Install goimports
 	@ $(MAKE) --no-print-directory log-$@
-	@ cd /tmp && go get -u golang.org/x/tools/cmd/goimports
+	@ cd /tmp
+	go get -u golang.org/x/tools/cmd/goimports
 
 .PHONY: tools
 tools: ## Install required tools
