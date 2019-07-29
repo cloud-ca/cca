@@ -19,35 +19,45 @@ jobs:
     steps:
     - restore_cache:
         key: repo-{{ .Environment.CIRCLE_SHA1 }}
-    - run: make verify
+    - run:
+        name: Verify 'vendor' dependencies
+        command: make verify
 
   checkfmt:
     <<: *defaults
     steps:
     - restore_cache:
         key: repo-{{ .Environment.CIRCLE_SHA1 }}
-    - run: make checkfmt
+    - run:
+        name: Check formatting of all go files
+        command: make checkfmt
 
   lint:
     <<: *defaults
     steps:
     - restore_cache:
         key: repo-{{ .Environment.CIRCLE_SHA1 }}
-    - run: make tools lint
+    - run:
+        name: Run linter
+        command: make tools lint
 
   test:
     <<: *defaults
     steps:
     - restore_cache:
         key: repo-{{ .Environment.CIRCLE_SHA1 }}
-    - run: make test
+    - run:
+        name: Run tests
+        command: make test
 
   build:
     <<: *defaults
     steps:
     - restore_cache:
         key: repo-{{ .Environment.CIRCLE_SHA1 }}
-    - run: make build
+    - run:
+        name: Build binary for current OS/ARCH
+        command: make build
     - save_cache:
         key: cca-{{ .Revision }}
         paths:
