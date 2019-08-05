@@ -22,9 +22,9 @@ func Has(format string) bool {
 	return false
 }
 
-// FormatString returns a string representing all output formats
+// FormatStrings returns a string representing all output formats.
 // this is useful for help text / flag info
-func FormatString() string {
+func FormatStrings() string {
 	var b strings.Builder
 	b.WriteString("[")
 	for i, format := range outputFormats {
