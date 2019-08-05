@@ -28,7 +28,7 @@ type GlobalFlags struct {
 	ColorOutput   bool
 	EnvironmentID string
 	LogLevel      string
-	OutputColor   bool
+	OutputColored bool
 	OutputFormat  string
 }
 

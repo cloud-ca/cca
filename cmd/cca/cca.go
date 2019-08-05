@@ -49,7 +49,7 @@ func NewCommand() *cobra.Command {
 	cmd.PersistentFlags().StringVar(&flags.APIURL, "api-url", cmdutil.DefaultAPIURL, "API url cloud.ca resources")
 	cmd.PersistentFlags().StringVar(&flags.APIKey, "api-key", "", "API Key to access cloud.ca resources")
 	cmd.PersistentFlags().StringVar(&flags.OutputFormat, "output-format", cmdutil.DefaultOutputFormat, "output format "+output.FormatStrings())
-	cmd.PersistentFlags().BoolVar(&flags.OutputColor, "output-color", false, "Enable or disable colored output")
+	cmd.PersistentFlags().BoolVar(&flags.OutputColored, "output-colored", false, "Enable or disable colored output")
 	cmd.PersistentFlags().StringVar(&flags.LogLevel, "loglevel", cmdutil.DefaultLogLevel.String(), "log level "+logutil.LevelsString())
 
 	cmd.AddCommand(completion.NewCommand(flags))
