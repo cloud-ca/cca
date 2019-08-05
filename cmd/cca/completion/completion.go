@@ -16,13 +16,9 @@
 package completion
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/cloud-ca/cca/cmd/cca/completion/bash"
 	"github.com/cloud-ca/cca/cmd/cca/completion/zsh"
 	"github.com/cloud-ca/cca/pkg/cmdutil"
-	"github.com/lithammer/dedent"
 	"github.com/spf13/cobra"
 )
 
@@ -32,7 +28,7 @@ func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
 		Args:  cobra.NoArgs,
 		Use:   "completion",
 		Short: "Output completion code for the specified shell (bash or zsh)",
-		Long: strings.TrimLeft(dedent.Dedent(fmt.Sprint(`
+		Long: cmdutil.LongDescription(`
             Outputs cca shell completion for the given shell (bash or zsh)
             This depends on the bash-completion binary.  Example installation instructions:
 
@@ -46,7 +42,7 @@ func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
 
             Additionally, you may want to output the completion to a file and source in your .bashrc
             Note for zsh users: [1] zsh completions are only supported in versions of zsh >= 5.2
-        `)), "\n"),
+        `),
 	}
 
 	cmd.AddCommand(zsh.NewCommand(gf))
