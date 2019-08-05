@@ -25,7 +25,6 @@ import (
 type GlobalFlags struct {
 	APIURL        string
 	APIKey        string
-	ColorOutput   bool
 	EnvironmentID string
 	LogLevel      string
 	OutputColored bool
@@ -35,9 +34,6 @@ type GlobalFlags struct {
 // Normalize checks and normalizes input flags and falls back to default values when needed
 func (gf *GlobalFlags) Normalize(cmd *cobra.Command, fn func(key string) interface{}, args []string) error {
 	if err := gf.parseLogLevel(cmd, args); err != nil {
-		return err
-	}
-	if err := gf.parseColorOutput(cmd, args); err != nil {
 		return err
 	}
 	if err := gf.parseOutputFormat(cmd, args); err != nil {
@@ -56,16 +52,6 @@ func (gf *GlobalFlags) parseLogLevel(cmd *cobra.Command, args []string) error {
 		level = parsed
 	}
 	logrus.SetLevel(level)
-	return nil
-}
-
-func (gf *GlobalFlags) parseColorOutput(cmd *cobra.Command, args []string) error {
-	nocolor, err := cmd.Flags().GetBool("nocolor")
-	if err != nil {
-		logrus.Warnf("Invalid nocolor value '%v', defaulting to '%v'", nocolor, false)
-	} else {
-		gf.ColorOutput = !nocolor
-	}
 	return nil
 }
 
