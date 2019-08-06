@@ -12,26 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package bash implements the `bash` command
-package bash
+// Package util contains general utility of the cca cli
+package util
 
 import (
-	"os"
+	"fmt"
+	"strings"
 
-	"github.com/cloud-ca/cca/pkg/cli"
-	"github.com/spf13/cobra"
+	"github.com/lithammer/dedent"
 )
 
-// NewCommand returns a new cobra.Command for bash completion
-func NewCommand(cli *cli.Wrapper) *cobra.Command {
-	cmd := &cobra.Command{
-		Args:  cobra.NoArgs,
-		Use:   "bash",
-		Short: "Output shell completions for bash",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return cmd.Parent().Parent().GenBashCompletion(os.Stdout)
-		},
-	}
-
-	return cmd
+// LongDescription formats long multi-line description and removes
+// the left empty space from the lines
+func LongDescription(a interface{}) string {
+	return strings.TrimLeft(dedent.Dedent(fmt.Sprint(a)), "\n")
 }
