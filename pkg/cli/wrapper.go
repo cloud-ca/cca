@@ -12,20 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package cmdutil contains general utility of the cca command
-package cmdutil
+// Package cli wraps around and holds the references to different part of cca cli command
+package cli
 
 import (
-	"github.com/sirupsen/logrus"
+	"github.com/cloud-ca/cca/pkg/flags"
 )
 
-const (
-	// DefaultAPIURL is the default value if not provided with corresponding flag
-	DefaultAPIURL = "https://api.cloud.ca/v1"
-
-	// DefaultLogLevel is the default value if not provided with corresponding flag
-	DefaultLogLevel = logrus.WarnLevel
-
-	// DefaultOutputFormat is the default value if not provided with corresponding flag
-	DefaultOutputFormat = "json"
-)
+// Wrapper of different parts of cca cli
+type Wrapper struct {
+	Flags *flags.GlobalFlags
+}

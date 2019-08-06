@@ -12,26 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package bash implements the `bash` command
-package bash
+// Package flags contains general utility of the cca cli flags
+package flags
 
 import (
-	"os"
-
-	"github.com/cloud-ca/cca/pkg/cli"
-	"github.com/spf13/cobra"
+	"github.com/sirupsen/logrus"
 )
 
-// NewCommand returns a new cobra.Command for bash completion
-func NewCommand(cli *cli.Wrapper) *cobra.Command {
-	cmd := &cobra.Command{
-		Args:  cobra.NoArgs,
-		Use:   "bash",
-		Short: "Output shell completions for bash",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return cmd.Parent().Parent().GenBashCompletion(os.Stdout)
-		},
-	}
+const (
+	// DefaultAPIURL is the default value if not provided with corresponding flag
+	DefaultAPIURL = "https://api.cloud.ca/v1"
 
-	return cmd
-}
+	// DefaultLogLevel is the default value if not provided with corresponding flag
+	DefaultLogLevel = logrus.WarnLevel
+
+	// DefaultOutputFormat is the default value if not provided with corresponding flag
+	DefaultOutputFormat = "json"
+)

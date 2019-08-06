@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cloud-ca/cca/pkg/cmdutil"
+	"github.com/cloud-ca/cca/pkg/cli"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +36,7 @@ var (
 )
 
 // NewCommand returns a new cobra.Command for version
-func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
+func NewCommand(cli *cli.Wrapper) *cobra.Command {
 	cmd := &cobra.Command{
 		Args:  cobra.NoArgs,
 		Use:   "version",

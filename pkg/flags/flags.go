@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package cmdutil contains general utility of the cca command
-package cmdutil
+// Package flags contains general utility of the cca cli flags
+package flags
 
 import (
 	"github.com/cloud-ca/cca/pkg/output"
@@ -39,7 +39,6 @@ func (gf *GlobalFlags) Normalize(cmd *cobra.Command, fn func(key string) interfa
 	if err := gf.parseOutputFormat(cmd, args); err != nil {
 		return err
 	}
-
 	return nil
 }
 

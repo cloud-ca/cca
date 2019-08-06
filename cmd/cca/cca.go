@@ -20,7 +20,8 @@ import (
 
 	"github.com/cloud-ca/cca/cmd/cca/completion"
 	"github.com/cloud-ca/cca/cmd/cca/version"
-	"github.com/cloud-ca/cca/pkg/cmdutil"
+	"github.com/cloud-ca/cca/pkg/cli"
+	"github.com/cloud-ca/cca/pkg/flags"
 	"github.com/cloud-ca/cca/pkg/output"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -30,7 +31,8 @@ import (
 
 // NewCommand returns a new cobra.Command implementing the root command for cca
 func NewCommand() *cobra.Command {
-	flags := &cmdutil.GlobalFlags{}
+	cli := &cli.Wrapper{}
+	flg := &flags.GlobalFlags{}
 	cmd := &cobra.Command{
 		Args:         cobra.NoArgs,
 		Use:          "cca",
@@ -39,21 +41,22 @@ func NewCommand() *cobra.Command {
 		SilenceUsage: true,
 		Version:      version.Version(),
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-			if err := flags.Normalize(cmd, viper.Get, args); err != nil {
+			if err := flg.Normalize(cmd, viper.Get, args); err != nil {
 				return err
 			}
+			cli.Flags = flg
 			return nil
 		},
 	}
 
-	cmd.PersistentFlags().StringVar(&flags.APIURL, "api-url", cmdutil.DefaultAPIURL, "API url cloud.ca resources")
-	cmd.PersistentFlags().StringVar(&flags.APIKey, "api-key", "", "API Key to access cloud.ca resources")
-	cmd.PersistentFlags().StringVar(&flags.OutputFormat, "output-format", cmdutil.DefaultOutputFormat, "output format "+output.FormatStrings())
-	cmd.PersistentFlags().BoolVar(&flags.OutputColored, "output-colored", false, "Enable or disable colored output")
-	cmd.PersistentFlags().StringVar(&flags.LogLevel, "loglevel", cmdutil.DefaultLogLevel.String(), "log level "+logutil.LevelsString())
+	cmd.PersistentFlags().StringVar(&flg.APIURL, "api-url", flags.DefaultAPIURL, "API url cloud.ca resources")
+	cmd.PersistentFlags().StringVar(&flg.APIKey, "api-key", "", "API Key to access cloud.ca resources")
+	cmd.PersistentFlags().StringVar(&flg.OutputFormat, "output-format", flags.DefaultOutputFormat, "output format "+output.FormatStrings())
+	cmd.PersistentFlags().BoolVar(&flg.OutputColored, "output-colored", false, "Enable or disable colored output")
+	cmd.PersistentFlags().StringVar(&flg.LogLevel, "loglevel", flags.DefaultLogLevel.String(), "log level "+logutil.LevelsString())
 
-	cmd.AddCommand(completion.NewCommand(flags))
-	cmd.AddCommand(version.NewCommand(flags))
+	cmd.AddCommand(completion.NewCommand(cli))
+	cmd.AddCommand(version.NewCommand(cli))
 
 	return cmd
 }

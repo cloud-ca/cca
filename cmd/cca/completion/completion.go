@@ -18,17 +18,18 @@ package completion
 import (
 	"github.com/cloud-ca/cca/cmd/cca/completion/bash"
 	"github.com/cloud-ca/cca/cmd/cca/completion/zsh"
-	"github.com/cloud-ca/cca/pkg/cmdutil"
+	"github.com/cloud-ca/cca/pkg/cli"
+	"github.com/cloud-ca/cca/pkg/util"
 	"github.com/spf13/cobra"
 )
 
 // NewCommand returns a new cobra.Command for shell completion
-func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
+func NewCommand(cli *cli.Wrapper) *cobra.Command {
 	cmd := &cobra.Command{
 		Args:  cobra.NoArgs,
 		Use:   "completion",
 		Short: "Output completion code for the specified shell (bash or zsh)",
-		Long: cmdutil.LongDescription(`
+		Long: util.LongDescription(`
             Outputs cca shell completion for the given shell (bash or zsh)
             This depends on the bash-completion binary.  Example installation instructions:
 
@@ -45,8 +46,8 @@ func NewCommand(gf *cmdutil.GlobalFlags) *cobra.Command {
         `),
 	}
 
-	cmd.AddCommand(zsh.NewCommand(gf))
-	cmd.AddCommand(bash.NewCommand(gf))
+	cmd.AddCommand(zsh.NewCommand(cli))
+	cmd.AddCommand(bash.NewCommand(cli))
 
 	return cmd
 }
