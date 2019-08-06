@@ -16,6 +16,7 @@
 package environment
 
 import (
+	"github.com/cloud-ca/cca/cmd/cca/environment/delete"
 	"github.com/cloud-ca/cca/cmd/cca/environment/list"
 	"github.com/cloud-ca/cca/pkg/cli"
 	"github.com/cloud-ca/cca/pkg/util"
@@ -39,6 +40,7 @@ func NewCommand(cli *cli.Wrapper) *cobra.Command {
         `),
 	}
 
+	cmd.AddCommand(delete.NewCommand(cli))
 	cmd.AddCommand(list.NewCommand(cli))
 
 	return cmd
