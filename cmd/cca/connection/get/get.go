@@ -46,7 +46,10 @@ func NewCommand(cli *cli.Wrapper) *cobra.Command {
 
 	cmd.Flags().StringVar(&flg.id, "id", "", "environment id")
 
-	cmd.MarkFlagRequired("id")
+	err := cmd.MarkFlagRequired("id")
+	if err != nil {
+		panic(err)
+	}
 
 	return cmd
 }
