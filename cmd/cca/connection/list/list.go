@@ -12,30 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package connection implements the `connection` command
-package connection
+// Package list implements the `connection list` command
+package list
 
 import (
-	"github.com/cloud-ca/cca/cmd/cca/connection/list"
 	"github.com/cloud-ca/cca/pkg/cli"
-	"github.com/cloud-ca/cca/pkg/util"
+	"github.com/cloud-ca/cca/pkg/output"
 	"github.com/spf13/cobra"
 )
 
-// NewCommand returns a new cobra.Command for connection
+// NewCommand returns a new cobra.Command for connection list
 func NewCommand(cli *cli.Wrapper) *cobra.Command {
 	cmd := &cobra.Command{
-		Args:  cobra.NoArgs,
-		Use:   "connection",
-		Short: "Manage service connections that you can create resources for",
-		Long: util.LongDescription(`
-            Service connections are the services that you can create resources for (e.g. compute, object
-            storage). Environments are created for a specific service which allows you to create and
-            manage resources within that service.
-        `),
+		Args:    cobra.NoArgs,
+		Aliases: []string{"ls"},
+		Use:     "list",
+		Short:   "List all service connections",
+		Long:    "List all service connections",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			connections, err := cli.CcaClient.ServiceConnections.List()
+			if err != nil {
+				return err
+			}
+			return cli.OutputBuilder.Build(func(formatter *output.Formatter) error {
+				return formatter.Format(connections)
+			})
+		},
 	}
-
-	cmd.AddCommand(list.NewCommand(cli))
 
 	return cmd
 }
