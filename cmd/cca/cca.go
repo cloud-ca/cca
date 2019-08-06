@@ -20,6 +20,7 @@ import (
 
 	"github.com/cloud-ca/cca/cmd/cca/completion"
 	"github.com/cloud-ca/cca/cmd/cca/connection"
+	"github.com/cloud-ca/cca/cmd/cca/environment"
 	"github.com/cloud-ca/cca/cmd/cca/version"
 	"github.com/cloud-ca/cca/pkg/cli"
 	"github.com/cloud-ca/cca/pkg/client"
@@ -60,6 +61,7 @@ func NewCommand() *cobra.Command {
 
 	cmd.AddCommand(completion.NewCommand(cli))
 	cmd.AddCommand(connection.NewCommand(cli))
+	cmd.AddCommand(environment.NewCommand(cli))
 	cmd.AddCommand(version.NewCommand(cli))
 
 	return cmd
