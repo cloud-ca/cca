@@ -16,6 +16,7 @@
 package environment
 
 import (
+	"github.com/cloud-ca/cca/cmd/cca/environment/list"
 	"github.com/cloud-ca/cca/pkg/cli"
 	"github.com/cloud-ca/cca/pkg/util"
 	"github.com/spf13/cobra"
@@ -37,6 +38,8 @@ func NewCommand(cli *cli.Wrapper) *cobra.Command {
             access to your most critical resources.
         `),
 	}
+
+	cmd.AddCommand(list.NewCommand(cli))
 
 	return cmd
 }
