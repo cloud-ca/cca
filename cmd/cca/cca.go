@@ -21,6 +21,7 @@ import (
 	"github.com/cloud-ca/cca/cmd/cca/completion"
 	"github.com/cloud-ca/cca/cmd/cca/version"
 	"github.com/cloud-ca/cca/pkg/cli"
+	"github.com/cloud-ca/cca/pkg/client"
 	"github.com/cloud-ca/cca/pkg/flags"
 	"github.com/cloud-ca/cca/pkg/output"
 	"github.com/sirupsen/logrus"
@@ -44,7 +45,9 @@ func NewCommand() *cobra.Command {
 			if err := flg.Normalize(cmd, viper.Get, args); err != nil {
 				return err
 			}
-			cli.Flags = flg
+			cli.GlobalFlags = flg
+			cli.OutputBuilder = output.NewBuilder(flg.OutputFormat, flg.OutputColored)
+			cli.CcaClient = client.NewClient(flg.APIURL, flg.APIKey)
 			return nil
 		},
 	}

@@ -12,18 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package cli wraps around and holds the references to different part of cca cli command
-package cli
+// Package client contains the client library to interact with cloud.ca infrastructure
+package client
 
 import (
-	"github.com/cloud-ca/cca/pkg/client"
-	"github.com/cloud-ca/cca/pkg/flags"
-	"github.com/cloud-ca/cca/pkg/output"
+	gocca "github.com/cloud-ca/go-cloudca"
 )
 
-// Wrapper of different parts of cca cli
-type Wrapper struct {
-	GlobalFlags   *flags.GlobalFlags
-	OutputBuilder *output.Builder
-	CcaClient     *client.Client
+// Client to interact with cloud.ca infrastructure
+type Client struct {
+	*gocca.CcaClient
+}
+
+// NewClient returns a new client to interact with cloud.ca
+// infrastructure with provided API URL and Key
+func NewClient(url string, key string) *Client {
+	return &Client{
+		CcaClient: gocca.NewCcaClientWithURL(url, key),
+	}
 }
