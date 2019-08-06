@@ -1,3 +1,9 @@
+# github.com/cloud-ca/go-cloudca v1.4.0
+github.com/cloud-ca/go-cloudca
+github.com/cloud-ca/go-cloudca/api
+github.com/cloud-ca/go-cloudca/configuration
+github.com/cloud-ca/go-cloudca/services
+github.com/cloud-ca/go-cloudca/services/cloudca
 # github.com/fsnotify/fsnotify v1.4.7
 github.com/fsnotify/fsnotify
 # github.com/hashicorp/hcl v1.0.0
@@ -38,6 +44,8 @@ github.com/spf13/jwalterweatherman
 github.com/spf13/pflag
 # github.com/spf13/viper v1.4.0
 github.com/spf13/viper
+# github.com/tidwall/pretty v1.0.0
+github.com/tidwall/pretty
 # golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
 golang.org/x/crypto/ssh/terminal
 # golang.org/x/sys v0.0.0-20190422165155-953cdadca894
