@@ -1,12 +1,13 @@
 package services
 
 import (
+	"testing"
+
 	"github.com/cloud-ca/cca/pkg/cloudca/api"
 	"github.com/cloud-ca/cca/pkg/cloudca/mocks"
 	"github.com/cloud-ca/cca/pkg/cloudca/mocks/api_mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 const (

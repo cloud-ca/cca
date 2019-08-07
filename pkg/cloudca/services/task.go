@@ -2,9 +2,10 @@ package services
 
 import (
 	"encoding/json"
-	"github.com/cloud-ca/cca/pkg/cloudca/api"
 	"strings"
 	"time"
+
+	"github.com/cloud-ca/cca/pkg/cloudca/api"
 )
 
 //Task status

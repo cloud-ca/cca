@@ -2,11 +2,12 @@ package cloudca
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/cloud-ca/cca/pkg/cloudca/mocks"
 	"github.com/cloud-ca/cca/pkg/cloudca/mocks/services_mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 const PFR_TEMPLATE = `{
