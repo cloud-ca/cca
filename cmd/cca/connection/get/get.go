@@ -17,7 +17,7 @@ package get
 
 import (
 	"github.com/cloud-ca/cca/pkg/cli"
-	"github.com/cloud-ca/cca/pkg/output"
+	"github.com/cloud-ca/cca/pkg/cli/output"
 	"github.com/spf13/cobra"
 )
 

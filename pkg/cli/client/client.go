@@ -16,18 +16,18 @@
 package client
 
 import (
-	gocca "github.com/cloud-ca/go-cloudca"
+	"github.com/cloud-ca/cca/pkg/cloudca"
 )
 
 // Client to interact with cloud.ca infrastructure
 type Client struct {
-	*gocca.CcaClient
+	*cloudca.CcaClient
 }
 
 // NewClient returns a new client to interact with cloud.ca
 // infrastructure with provided API URL and Key
 func NewClient(url string, key string) *Client {
 	return &Client{
-		CcaClient: gocca.NewCcaClientWithURL(url, key),
+		CcaClient: cloudca.NewCcaClientWithURL(url, key),
 	}
 }

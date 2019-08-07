@@ -15,7 +15,7 @@
 package flags
 
 import (
-	"github.com/cloud-ca/cca/pkg/output"
+	"github.com/cloud-ca/cca/pkg/cli/output"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

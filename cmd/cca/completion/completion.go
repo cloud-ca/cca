@@ -19,7 +19,7 @@ import (
 	"github.com/cloud-ca/cca/cmd/cca/completion/bash"
 	"github.com/cloud-ca/cca/cmd/cca/completion/zsh"
 	"github.com/cloud-ca/cca/pkg/cli"
-	"github.com/cloud-ca/cca/pkg/util"
+	"github.com/cloud-ca/cca/pkg/cli/util"
 	"github.com/spf13/cobra"
 )
 
