@@ -113,7 +113,7 @@ build: clean ## Build binary for current OS/ARCH
 	@ $(MAKE) --no-print-directory log-$@
 	$(GOBUILD) -o ./$(BUILD_DIR)/$(GOOS)-$(GOARCH)/$(NAME)
 	@ if [ $(compress) = "true" ]; then				\
-		./hack/build/compress.sh "$(NAME)" "$(VERSION)" ;	\
+		./scripts/build/compress.sh "$(NAME)" "$(VERSION)" ;	\
 	fi
 
 .PHONY: build-all
@@ -131,7 +131,7 @@ build-all: clean ## Build binary for all OS/ARCH
 		-output="$(BUILD_DIR)/{{.OS}}-{{.Arch}}/{{.Dir}}" .
 
 	@ if [ $(compress) = "true" ]; then				\
-		./hack/build/compress.sh "$(NAME)" "$(VERSION)" ;	\
+		./scripts/build/compress.sh "$(NAME)" "$(VERSION)" ;	\
 	fi
 
 #####################
