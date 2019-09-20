@@ -1,3 +1,17 @@
+# Copyright © 2019 cloud.ca Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # Project variables
 ORG         := cloud-ca
 NAME        := cca
@@ -33,8 +47,8 @@ GOBUILD     ?= GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=0 $(GOCMD) build $(MODV
 GORUN       ?= GOOS=$(GOOS) GOARCH=$(GOARCH) $(GOCMD) run $(MODVENDOR)
 
 # Binary versions
-GOLANGCI_VERSION  := v1.17.1
 GITCHGLOG_VERSION := 0.8.0
+GOLANGCI_VERSION  := v1.17.1
 
 .PHONY: default
 default: help
@@ -66,19 +80,20 @@ verify: ## Verify 'vendor' dependencies
 	$(GOCMD) mod verify
 
 .PHONY: lint
+lint: SHELL := /usr/bin/env bash
 lint: ## Run linter
 	@ $(MAKE) --no-print-directory log-$@
 	GO111MODULE=on golangci-lint run ./...
 
 .PHONY: fmt
-fmt: ## Format all go files
+fmt: ## Format go files
 	@ $(MAKE) --no-print-directory log-$@
 	goimports -w $(GOFILES)
 
 .PHONY: checkfmt
 checkfmt: RESULT = $(shell goimports -l $(GOFILES) | tee >(if [ "$$(wc -l)" = 0 ]; then echo "OK"; fi))
-checkfmt: SHELL := /bin/bash
-checkfmt: ## Check formatting of all go files
+checkfmt: SHELL := /usr/bin/env bash
+checkfmt: ## Check formatting of go files
 	@ $(MAKE) --no-print-directory log-$@
 	@ echo "$(RESULT)"
 	@ if [ "$(RESULT)" != "OK" ]; then exit 1; fi
@@ -127,7 +142,7 @@ PATTERN =
 
 release: version ?= $(shell echo $(VERSION) | sed 's/^v//' | awk -F'[ .]' '{print $(PATTERN)}')
 release: push    ?= false
-release: ## Prepare Module release
+release: ## Prepare release
 	@ $(MAKE) --no-print-directory log-$@
 	@ if [ -z "$(version)" ]; then								\
 		echo "Error: missing value for 'version'. e.g. 'make release version=x.y.z'" ;	\
@@ -143,13 +158,13 @@ release: ## Prepare Module release
 	fi
 
 patch: PATTERN = '\$$1\".\"\$$2\".\"\$$3+1'
-patch: release ## Prepare Module Patch release
+patch: release ## Prepare Patch release
 
 minor: PATTERN = '\$$1\".\"\$$2+1\".0\"'
-minor: release ## Prepare Module Minor release
+minor: release ## Prepare Minor release
 
 major: PATTERN = '\$$1+1\".0.0\"'
-major: release ## Prepare Module Major release
+major: release ## Prepare Major release
 
 ####################
 ## Helper targets ##
