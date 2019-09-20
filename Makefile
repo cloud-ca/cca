@@ -174,8 +174,13 @@ authors: ## Generate Authors
 	git log --all --format='%aN <%aE>' | sort -u | egrep -v noreply > AUTHORS
 
 .PHONY: changelog
+changelog: push ?= false
 changelog: ## Generate Changelog
-	git-chglog --config hack/chglog --output CHANGELOG.md
+	@ $(MAKE) --no-print-directory log-$@
+	git-chglog --config ./scripts/chglog/config-full-history.yml --output CHANGELOG.md
+	@ git add CHANGELOG.md
+	@ git commit -m "Update Changelog"
+	@ if $(push) = "true"; then git push origin master; fi
 
 .PHONY: tools git-chglog goimports golangci gox
 
