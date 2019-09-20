@@ -144,18 +144,7 @@ release: version ?= $(shell echo $(VERSION) | sed 's/^v//' | awk -F'[ .]' '{prin
 release: push    ?= false
 release: ## Prepare release
 	@ $(MAKE) --no-print-directory log-$@
-	@ if [ -z "$(version)" ]; then								\
-		echo "Error: missing value for 'version'. e.g. 'make release version=x.y.z'" ;	\
-	elif [ "v$(version)" = "$(VERSION)" ] ; then						\
-		echo "Error: provided version (v$(version)) exists." ;				\
-	else											\
-		git tag --annotate --message "v$(version) Release" v$(version) ;		\
-		echo "Tag v$(version) Release" ;						\
-		if [ $(push) = "true" ]; then							\
-			git push origin v$(version) ;						\
-			echo "Push v$(version) Release" ;					\
-		fi										\
-	fi
+	@ ./scripts/release/release.sh "$(version)" "$(push)" "$(VERSION)" "1"
 
 patch: PATTERN = '\$$1\".\"\$$2\".\"\$$3+1'
 patch: release ## Prepare Patch release
