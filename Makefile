@@ -177,17 +177,23 @@ authors: ## Generate Authors
 changelog: ## Generate Changelog
 	git-chglog --config hack/chglog --output CHANGELOG.md
 
-.PHONY: goimports
-goimports: ## Install goimports
-	@ $(MAKE) --no-print-directory log-$@
+.PHONY: tools git-chglog goimports golangci gox
+
+git-chglog:
+	curl -sfL https://github.com/git-chglog/git-chglog/releases/download/$(GITCHGLOG_VERSION)/git-chglog_$(shell go env GOOS)_$(shell go env GOARCH) -o $(shell go env GOPATH)/bin/git-chglog && chmod +x $(shell go env GOPATH)/bin/git-chglog
+
+goimports:
 	GO111MODULE=off go get -u golang.org/x/tools/cmd/goimports
 
-.PHONY: tools
+golangci:
+	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s  -- -b $(shell go env GOPATH)/bin $(GOLANGCI_VERSION)
+
+gox:
+	GO111MODULE=off go get -u github.com/mitchellh/gox
+
 tools: ## Install required tools
 	@ $(MAKE) --no-print-directory log-$@
-	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s  -- -b $(shell go env GOPATH)/bin $(GOLANGCI_VERSION)
-	curl -sfL https://github.com/git-chglog/git-chglog/releases/download/$(GITCHGLOG_VERSION)/git-chglog_$(shell go env GOOS)_$(shell go env GOARCH) -o $(shell go env GOPATH)/bin/git-chglog && chmod +x $(shell go env GOPATH)/bin/git-chglog
-	GO111MODULE=off go get -u github.com/mitchellh/gox
+	@ $(MAKE) --no-print-directory git-chglog goimports golangci gox
 
 ####################################
 ## Self-Documenting Makefile Help ##
