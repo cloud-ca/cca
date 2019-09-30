@@ -1,4 +1,4 @@
-# cca [![CircleCI](https://circleci.com/gh/cloud-ca/cca.svg?style=svg)](https://circleci.com/gh/cloud-ca/cca) [![GoDoc](https://godoc.org/github.com/cloud-ca/cca?status.svg)](https://godoc.org/github.com/cloud-ca/cca) [![Go Report Card](https://goreportcard.com/badge/github.com/cloud-ca/cca)](https://goreportcard.com/report/github.com/cloud-ca/cca)
+# cca [![Build Status](https://github.com/cloud-ca/cca/workflows/build/badge.svg)](https://github.com/cloud-ca/cca/actions) [![GoDoc](https://godoc.org/github.com/cloud-ca/cca?status.svg)](https://godoc.org/github.com/cloud-ca/cca) [![Go Report Card](https://goreportcard.com/badge/github.com/cloud-ca/cca)](https://goreportcard.com/report/github.com/cloud-ca/cca)
 
 This tool allows you to interact with a [cloud.ca](https://cloud.ca/`) services via a command line interface.
 
