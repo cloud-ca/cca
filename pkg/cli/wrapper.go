@@ -16,9 +16,9 @@
 package cli
 
 import (
-	"github.com/cloud-ca/cca/pkg/client"
-	"github.com/cloud-ca/cca/pkg/flags"
-	"github.com/cloud-ca/cca/pkg/output"
+	"github.com/cloud-ca/cca/pkg/cli/client"
+	"github.com/cloud-ca/cca/pkg/cli/flags"
+	"github.com/cloud-ca/cca/pkg/cli/output"
 )
 
 // Wrapper of different parts of cca cli

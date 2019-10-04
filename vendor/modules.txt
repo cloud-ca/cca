@@ -1,11 +1,9 @@
-# github.com/cloud-ca/go-cloudca v1.4.0
-github.com/cloud-ca/go-cloudca
-github.com/cloud-ca/go-cloudca/api
-github.com/cloud-ca/go-cloudca/configuration
-github.com/cloud-ca/go-cloudca/services
-github.com/cloud-ca/go-cloudca/services/cloudca
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
 # github.com/fsnotify/fsnotify v1.4.7
 github.com/fsnotify/fsnotify
+# github.com/golang/mock v1.1.1
+github.com/golang/mock/gomock
 # github.com/hashicorp/hcl v1.0.0
 github.com/hashicorp/hcl
 github.com/hashicorp/hcl/hcl/printer
@@ -29,6 +27,8 @@ github.com/magiconair/properties
 github.com/mitchellh/mapstructure
 # github.com/pelletier/go-toml v1.2.0
 github.com/pelletier/go-toml
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
 # github.com/sirupsen/logrus v1.4.2
 github.com/sirupsen/logrus
 # github.com/spf13/afero v1.1.2
@@ -44,10 +44,14 @@ github.com/spf13/jwalterweatherman
 github.com/spf13/pflag
 # github.com/spf13/viper v1.4.0
 github.com/spf13/viper
+# github.com/stretchr/testify v1.2.2
+github.com/stretchr/testify/assert
 # github.com/tidwall/pretty v1.0.0
 github.com/tidwall/pretty
 # golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
 golang.org/x/crypto/ssh/terminal
+# golang.org/x/net v0.0.0-20190522155817-f3200d17e092
+golang.org/x/net/context
 # golang.org/x/sys v0.0.0-20190422165155-953cdadca894
 golang.org/x/sys/unix
 golang.org/x/sys/windows
