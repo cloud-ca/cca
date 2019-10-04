@@ -19,7 +19,7 @@ set -o nounset
 set -o pipefail
 
 BUILD_DIR="${1:-bin}"
-NAME="${2:-terraform-docs}"
+NAME="${2:-cca}"
 VERSION=$3
 
 if [ -z "${NAME}" ]; then

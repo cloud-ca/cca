@@ -29,6 +29,6 @@ if ! command -v git-chglog >/dev/null ; then
 fi
 
 # Generate Changelog
-git-chglog --config ${PWD}/../../scripts/chglog/config-release-note.yml --output ${PWD}/../../CURRENT-RELEASE-CHANGELOG.md ${CLOSEST_VERSION}
+git-chglog --config ${PWD}/../../scripts/chglog/config-release-note.yml --tag-filter-pattern v[0-9]+.[0-9]+.[0-9]+$ --output ${PWD}/../../CURRENT-RELEASE-CHANGELOG.md ${CLOSEST_VERSION}
 
 cat ${PWD}/../../CURRENT-RELEASE-CHANGELOG.md

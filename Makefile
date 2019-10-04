@@ -48,7 +48,7 @@ GORUN       ?= GOOS=$(GOOS) GOARCH=$(GOARCH) $(GOCMD) run $(MODVENDOR)
 
 # Binary versions
 GITCHGLOG_VERSION := 0.8.0
-GOLANGCI_VERSION  := v1.17.1
+GOLANGCI_VERSION  := v1.18.0
 
 .PHONY: default
 default: help
@@ -80,7 +80,6 @@ verify: ## Verify 'vendor' dependencies
 	$(GOCMD) mod verify
 
 .PHONY: lint
-lint: SHELL := /usr/bin/env bash
 lint: ## Run linter
 	@ $(MAKE) --no-print-directory log-$@
 	GO111MODULE=on golangci-lint run ./...
@@ -107,7 +106,6 @@ test: ## Run tests
 ## Build targets ##
 ###################
 .PHONY: build
-build: FULL_PATH ?= ./$(BUILD_DIR)/$(NAME)-$(VERSION)-$(GOOS)-$(GOARCH)
 build: clean ## Build binary for current OS/ARCH
 	@ $(MAKE) --no-print-directory log-$@
 	$(GOBUILD) -o ./$(BUILD_DIR)/$(GOOS)-$(GOARCH)/$(NAME)
@@ -151,9 +149,10 @@ authors: ## Generate Authors
 
 .PHONY: changelog
 changelog: push ?= false
+changelog: next ?=
 changelog: ## Generate Changelog
 	@ $(MAKE) --no-print-directory log-$@
-	git-chglog --config ./scripts/chglog/config-full-history.yml --output CHANGELOG.md
+	git-chglog --config ./scripts/chglog/config-full-history.yml --tag-filter-pattern v[0-9]+.[0-9]+.[0-9]+$$ --output CHANGELOG.md $(next)
 	@ git add CHANGELOG.md
 	@ git commit -m "Update Changelog"
 	@ if $(push) = "true"; then git push origin master; fi

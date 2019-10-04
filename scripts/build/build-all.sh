@@ -24,7 +24,7 @@ GOARCH="${3:-"amd64 arm"}"
 GOLDFLAGS="$4"
 
 if [ -z "${GOLDFLAGS}" ]; then
-    echo "Error: GOLDFLAGS is missing. e.g. ./compress.sh <build_dir> <name> <version> <build_os_list> <build_arch_list> <build_ldflag>"
+    echo "Error: GOLDFLAGS is missing. e.g. ./build-all.sh <build_dir> <build_os_list> <build_arch_list> <build_ldflag>"
     exit 1
 fi
 
