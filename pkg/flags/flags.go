@@ -26,7 +26,6 @@ type GlobalFlags struct {
 	APIKey        string
 	EnvironmentID string
 	LogLevel      string
-	OutputColored bool
 	OutputFormat  string
 }
 
