@@ -1,16 +1,25 @@
 ## Changelog
 
-{{ if .Versions -}}
-{{ if .Unreleased.CommitGroups -}}
-{{ range .Unreleased.CommitGroups -}}
+{{ range .Versions }}
+{{ if .CommitGroups -}}
+{{ range .CommitGroups -}}
 ### {{ .Title }}
 {{ range .Commits -}}
 - {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ if .Subject }}{{ .Subject }}{{ else }}{{ .Header }}{{ end }}
 {{ end }}
 {{ end -}}
 {{ else }}
-{{ range .Unreleased.Commits -}}
+{{ range .Commits -}}
 - {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ if .Subject }}{{ .Subject }}{{ else }}{{ .Header }}{{ end }}
 {{ end }}
+{{ end -}}
+
+{{- if .NoteGroups -}}
+{{ range .NoteGroups -}}
+### {{ .Title }}
+{{ range .Notes }}
+{{ .Body }}
+{{ end }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
