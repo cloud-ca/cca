@@ -21,13 +21,13 @@ import (
 
 // Client to interact with cloud.ca infrastructure
 type Client struct {
-	*cloudca.CcaClient
+	*cloudca.Client
 }
 
 // NewClient returns a new client to interact with cloud.ca
 // infrastructure with provided API URL and Key
 func NewClient(url string, key string) *Client {
 	return &Client{
-		CcaClient: cloudca.NewCcaClientWithURL(url, key),
+		Client: cloudca.NewClientWithURL(url, key),
 	}
 }
