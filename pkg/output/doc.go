@@ -12,19 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package flags
-
-import (
-	"github.com/sirupsen/logrus"
-)
-
-const (
-	// DefaultAPIURL is the default value if not provided with corresponding flag
-	DefaultAPIURL = "https://api.cloud.ca/v1"
-
-	// DefaultLogLevel is the default value if not provided with corresponding flag
-	DefaultLogLevel = logrus.WarnLevel
-
-	// DefaultOutputFormat is the default value if not provided with corresponding flag
-	DefaultOutputFormat = "json"
-)
+// Package output contains helper utility to build and format the output
+package output
