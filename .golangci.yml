@@ -1,6 +1,7 @@
 run:
   deadline: 5m
   tests: true
+  modules-download-mode: vendor
 
 linters:
   disable-all: true
@@ -45,4 +46,3 @@ issues:
   exclude-use-default: false
   max-issues-per-linter: 0
   max-same-issues: 0
-  new: true

@@ -82,7 +82,7 @@ verify: ## Verify 'vendor' dependencies
 .PHONY: lint
 lint: ## Run linter
 	@ $(MAKE) --no-print-directory log-$@
-	GO111MODULE=on golangci-lint run ./...
+	GO111MODULE=on golangci-lint run --tests=false ./...
 
 .PHONY: fmt
 fmt: ## Format go files
@@ -90,8 +90,8 @@ fmt: ## Format go files
 	goimports -w $(GOFILES)
 
 .PHONY: checkfmt
-checkfmt: RESULT = $(shell goimports -l $(GOFILES) | tee >(if [ "$$(wc -l)" = 0 ]; then echo "OK"; fi))
-checkfmt: SHELL := /usr/bin/env bash
+checkfmt: RESULT ?= $(shell goimports -l $(GOFILES) | tee >(if [ "$$(wc -l)" = 0 ]; then echo "OK"; fi))
+checkfmt: SHELL  := /usr/bin/env bash
 checkfmt: ## Check formatting of go files
 	@ $(MAKE) --no-print-directory log-$@
 	@ echo "$(RESULT)"
