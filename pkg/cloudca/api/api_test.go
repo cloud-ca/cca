@@ -1,3 +1,17 @@
+// Copyright © 2019 cloud.ca Authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package api
 
 import (
@@ -29,10 +43,10 @@ func TestGetTaskReturnTaskIfSuccess(t *testing.T) {
 	}
 
 	httpClient := &http.Client{Transport: transport}
-	ccaClient := CcaApiClient{server.URL, "api-key", httpClient}
+	ccaClient := CcaClient{server.URL, "api-key", httpClient}
 
-	expectedResp := CcaResponse{
-		TaskId:     "test_task_id",
+	expectedResp := Response{
+		TaskID:     "test_task_id",
 		TaskStatus: "test_task_status",
 		Data:       []byte(`{"key":"value"}`),
 		MetaData:   map[string]interface{}{"meta_key": "meta_value"},
@@ -40,7 +54,7 @@ func TestGetTaskReturnTaskIfSuccess(t *testing.T) {
 	}
 
 	//when
-	resp, _ := ccaClient.Do(CcaRequest{Method: "GET", Endpoint: "/fooo"})
+	resp, _ := ccaClient.Do(Request{Method: "GET", Endpoint: "/fooo"})
 
 	//then
 	assert.Equal(t, expectedResp, *resp)
@@ -62,15 +76,15 @@ func TestGetTaskReturnErrorsIfErrorOccured(t *testing.T) {
 	}
 
 	httpClient := &http.Client{Transport: transport}
-	ccaClient := CcaApiClient{server.URL, "api-key", httpClient}
+	ccaClient := CcaClient{server.URL, "api-key", httpClient}
 
-	expectedResp := CcaResponse{
-		Errors:     []CcaError{{ErrorCode: "FOO_ERROR", Message: "message1"}, {ErrorCode: "BAR_ERROR", Message: "message2"}},
+	expectedResp := Response{
+		Errors:     []Error{{ErrorCode: "FOO_ERROR", Message: "message1"}, {ErrorCode: "BAR_ERROR", Message: "message2"}},
 		StatusCode: 400,
 	}
 
 	//when
-	resp, _ := ccaClient.Do(CcaRequest{Method: "GET", Endpoint: "/fooo"})
+	resp, _ := ccaClient.Do(Request{Method: "GET", Endpoint: "/fooo"})
 
 	//then
 	assert.Equal(t, expectedResp, *resp)

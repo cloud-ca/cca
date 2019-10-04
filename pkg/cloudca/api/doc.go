@@ -12,20 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package api contains the implementation of API client
 package api
-
-//nolint
-const (
-	GET    = "GET"
-	POST   = "POST"
-	DELETE = "DELETE"
-	PUT    = "PUT"
-)
-
-// Request a request object
-type Request struct {
-	Method   string
-	Endpoint string
-	Body     []byte
-	Options  map[string]string
-}
